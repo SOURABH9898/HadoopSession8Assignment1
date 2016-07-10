@@ -1,0 +1,7 @@
+pig
+
+A = LOAD '/Sourabh/WordCountinput/WordCountWCinput' AS (line: chararray);
+B = FOREACH A GENERATE TOKENIZE(line) AS tokens;
+C = FOREACH B GENERATE FLATTEN(tokens) AS words;
+GRP = GROUP C ALL;
+CNT = FOREACH GRP GENERATE COUNT(words);
